@@ -41,65 +41,89 @@ const allOverlay = document.querySelectorAll('.overlay') //overlay 2
 allOverlay[0].classList.add('ms-d-none'); //overlay 2
 
 
+const autoplay = setInterval(() =>{
+  if( currentSlide < (imagesCarousel.length - 1)){
+    allSlide[currentSlide].classList.remove('active');
+    allOverlay[currentSlide].classList.remove('ms-d-none'); //overlay 2
+    console.log('allSlide prima',allSlide[currentSlide],typeof allSlide);
+    
+    currentSlide ++;
+    
+    allSlide[currentSlide].classList.add('active');
+    allOverlay[currentSlide].classList.add('ms-d-none'); //overlay 2
+    console.log('allSlide dopo',allSlide[currentSlide],typeof allSlide);
+  }
+  else{
+    allSlide[currentSlide].classList.remove('active');
+    allOverlay[currentSlide].classList.remove('ms-d-none'); //overlay 2
+    console.log('allSlide prima',allSlide[currentSlide],typeof allSlide);
+    
+    currentSlide = 0;
+    
+    allSlide[currentSlide].classList.add('active');
+    allOverlay[currentSlide].classList.add('ms-d-none'); //overlay 2
+    console.log('allSlide dopo',allSlide[currentSlide],typeof allSlide);
+  }
+},3000)
 
-  after.addEventListener('click',
-  
-    function(){
-      if( currentSlide < (imagesCarousel.length - 1)){
-        allSlide[currentSlide].classList.remove('active');
-        allOverlay[currentSlide].classList.remove('ms-d-none'); //overlay 2
-        console.log('allSlide prima',allSlide[currentSlide],typeof allSlide);
-        
-        currentSlide ++;
-        
-        allSlide[currentSlide].classList.add('active');
-        allOverlay[currentSlide].classList.add('ms-d-none'); //overlay 2
-        console.log('allSlide dopo',allSlide[currentSlide],typeof allSlide);
-      }
-      else{
-        allSlide[currentSlide].classList.remove('active');
-        allOverlay[currentSlide].classList.remove('ms-d-none'); //overlay 2
-        console.log('allSlide prima',allSlide[currentSlide],typeof allSlide);
-        
-        currentSlide = 0;
-        
-        allSlide[currentSlide].classList.add('active');
-        allOverlay[currentSlide].classList.add('ms-d-none'); //overlay 2
-        console.log('allSlide dopo',allSlide[currentSlide],typeof allSlide);
-      }
-    }
-  
-  )
-  
-  before.addEventListener('click',
-  
-    function(){
-      if(currentSlide > 0){
-        allSlide[currentSlide].classList.remove('active');
-        allOverlay[currentSlide].classList.remove('ms-d-none'); //overlay 2
-        console.log('allSlide prima',allSlide[currentSlide],typeof allSlide);
-        
-        currentSlide --;
-        
-        allSlide[currentSlide].classList.add('active');
-        allOverlay[currentSlide].classList.add('ms-d-none'); //overlay 2
-        console.log('allSlide dopo',allSlide[currentSlide],typeof allSlide);
-      }
-      else{
-        allSlide[currentSlide].classList.remove('active');
-        allOverlay[currentSlide].classList.remove('ms-d-none'); //overlay 2
-        console.log('allSlide prima',allSlide[currentSlide],typeof allSlide);
-        
-        currentSlide = imagesCarousel.length -1;
-        
-        allSlide[currentSlide].classList.add('active');
-        allOverlay[currentSlide].classList.add('ms-d-none'); //overlay 2
-        console.log('allSlide dopo',allSlide[currentSlide],typeof allSlide);
-      }
+after.addEventListener('click',
+
+  function(){
+    if( currentSlide < (imagesCarousel.length - 1)){
+      allSlide[currentSlide].classList.remove('active');
+      allOverlay[currentSlide].classList.remove('ms-d-none'); //overlay 2
+      console.log('allSlide prima',allSlide[currentSlide],typeof allSlide);
       
+      currentSlide ++;
+      
+      allSlide[currentSlide].classList.add('active');
+      allOverlay[currentSlide].classList.add('ms-d-none'); //overlay 2
+      console.log('allSlide dopo',allSlide[currentSlide],typeof allSlide);
     }
-  
-  )
+    else{
+      allSlide[currentSlide].classList.remove('active');
+      allOverlay[currentSlide].classList.remove('ms-d-none'); //overlay 2
+      console.log('allSlide prima',allSlide[currentSlide],typeof allSlide);
+      
+      currentSlide = 0;
+      
+      allSlide[currentSlide].classList.add('active');
+      allOverlay[currentSlide].classList.add('ms-d-none'); //overlay 2
+      console.log('allSlide dopo',allSlide[currentSlide],typeof allSlide);
+    }
+  }
+
+)
+
+before.addEventListener('click',
+
+  function(){
+    if(currentSlide > 0){
+      allSlide[currentSlide].classList.remove('active');
+      allOverlay[currentSlide].classList.remove('ms-d-none'); //overlay 2
+      console.log('allSlide prima',allSlide[currentSlide],typeof allSlide);
+      
+      currentSlide --;
+      
+      allSlide[currentSlide].classList.add('active');
+      allOverlay[currentSlide].classList.add('ms-d-none'); //overlay 2
+      console.log('allSlide dopo',allSlide[currentSlide],typeof allSlide);
+    }
+    else{
+      allSlide[currentSlide].classList.remove('active');
+      allOverlay[currentSlide].classList.remove('ms-d-none'); //overlay 2
+      console.log('allSlide prima',allSlide[currentSlide],typeof allSlide);
+      
+      currentSlide = imagesCarousel.length -1;
+      
+      allSlide[currentSlide].classList.add('active');
+      allOverlay[currentSlide].classList.add('ms-d-none'); //overlay 2
+      console.log('allSlide dopo',allSlide[currentSlide],typeof allSlide);
+    }
+    
+  }
+
+)
 
 
 
