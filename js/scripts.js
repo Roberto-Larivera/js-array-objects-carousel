@@ -1,5 +1,4 @@
-console.log('int ok');
-
+//console.log('int ok');
 const imagesCarousel = [
   {
       image: 'img/01.webp',
@@ -24,63 +23,40 @@ const imagesCarousel = [
   }
 ];
 
-const srcImg = [
-    'img/01.webp',
-    'img/02.webp',
-    'img/03.webp',
-    'img/04.webp',
-    'img/05.webp'
-  ];
-  const slides = document.querySelector('.slides');
-
-  function createdSlide (){
-    imagesCarousel.forEach((item , i ,arr) =>{
-      
-    })
-  }
-  
-
-
-
-
-
-  let currentSlide = 0
-  
-
-  for(let i=0 ; i < srcImg.length; i++){
-   slides.innerHTML += `<div class="slide"><img src="${srcImg[i]}"></div>`;
-    //console.log(srcImg[currentSlide]);
-  }
-  
-  console.log('slides',slides,typeof slides);
-  
-  const allSlide = document.querySelectorAll('.slide');
-  
-  console.log('allSlide',allSlide,typeof allSlide);
-  
-  allSlide[0].classList.add('active');
-  
   const before = document.querySelector('.before');
   const after = document.querySelector('.after');
-  
+
+  const slides = document.querySelector('.slides');
+
+  let currentSlide = 0
+
+  createdSlide ();
+
+  const allSlide = document.querySelectorAll('.slide');
+  allSlide[0].classList.add('active');
+
+
   after.addEventListener('click',
   
     function(){
-      
-      allSlide[currentSlide].classList.remove('active');
-      console.log('allSlide prima',allSlide[currentSlide],typeof allSlide);
-      
-      currentSlide ++;
-      
-      allSlide[currentSlide].classList.add('active');
-      console.log('allSlide dopo',allSlide[currentSlide],typeof allSlide);
-      
-      before.classList.remove('ms-d-none');
-      
-      if(currentSlide == allSlide.length -1){
-        after.classList.add('ms-d-none');
+      if( currentSlide < (imagesCarousel.length - 1)){
+        allSlide[currentSlide].classList.remove('active');
+        console.log('allSlide prima',allSlide[currentSlide],typeof allSlide);
+        
+        currentSlide ++;
+        
+        allSlide[currentSlide].classList.add('active');
+        console.log('allSlide dopo',allSlide[currentSlide],typeof allSlide);
       }
-      
+      else{
+        allSlide[currentSlide].classList.remove('active');
+        console.log('allSlide prima',allSlide[currentSlide],typeof allSlide);
+        
+        currentSlide = 0;
+        
+        allSlide[currentSlide].classList.add('active');
+        console.log('allSlide dopo',allSlide[currentSlide],typeof allSlide);
+      }
     }
   
   )
@@ -88,20 +64,57 @@ const srcImg = [
   before.addEventListener('click',
   
     function(){
-      
-      allSlide[currentSlide].classList.remove('active');
-      console.log('allSlide prima',allSlide[currentSlide],typeof allSlide);
-      
-      currentSlide --;
-      
-      allSlide[currentSlide].classList.add('active');
-      console.log('allSlide dopo',allSlide[currentSlide],typeof allSlide);
-      
-      after.classList.remove('ms-d-none');
-      
-      if(currentSlide == 0){
-        before.classList.add('ms-d-none');
+      if(currentSlide > 0){
+        allSlide[currentSlide].classList.remove('active');
+        console.log('allSlide prima',allSlide[currentSlide],typeof allSlide);
+        
+        currentSlide --;
+        
+        allSlide[currentSlide].classList.add('active');
+        console.log('allSlide dopo',allSlide[currentSlide],typeof allSlide);
       }
+      else{
+        allSlide[currentSlide].classList.remove('active');
+        console.log('allSlide prima',allSlide[currentSlide],typeof allSlide);
+        
+        currentSlide = imagesCarousel.length -1;
+        
+        allSlide[currentSlide].classList.add('active');
+        console.log('allSlide dopo',allSlide[currentSlide],typeof allSlide);
+      }
+      
     }
   
   )
+
+
+
+
+
+
+
+
+
+
+
+
+  function createdSlide (){
+    // POSSIBILE MODIFICA IN CASO NON SERVONO I COLLEGAMENTI
+    imagesCarousel.forEach((item , i ,arr) =>{
+
+      slides.innerHTML += `
+        <div class="slide">
+          <div class="info-image">
+            <h2>
+                ${item.title}
+            </h2>
+            <p>
+                ${item.text}
+            </p>
+          </div>
+          <div class="int-image">
+            <img src="${item.image}">
+          </div>
+        </div>`
+    })
+  }
