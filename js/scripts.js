@@ -27,7 +27,7 @@ const imagesCarousel = [
   const after = document.querySelector('.after');
 
   const slides = document.querySelector('.slides');
-  const preview = document.querySelector('.preview'); //bonus 2
+  const preview = document.querySelector('.preview'); //overlay 2
 
 
   let currentSlide = 0
@@ -35,7 +35,11 @@ const imagesCarousel = [
   createdSlide ();
 
   const allSlide = document.querySelectorAll('.slide');
+const allOverlay = document.querySelectorAll('.overlay') //overlay 2
+
   allSlide[0].classList.add('active');
+allOverlay[0].classList.add('ms-d-none'); //overlay 2
+
 
 
   after.addEventListener('click',
@@ -43,20 +47,24 @@ const imagesCarousel = [
     function(){
       if( currentSlide < (imagesCarousel.length - 1)){
         allSlide[currentSlide].classList.remove('active');
+        allOverlay[currentSlide].classList.remove('ms-d-none'); //overlay 2
         console.log('allSlide prima',allSlide[currentSlide],typeof allSlide);
         
         currentSlide ++;
         
         allSlide[currentSlide].classList.add('active');
+        allOverlay[currentSlide].classList.add('ms-d-none'); //overlay 2
         console.log('allSlide dopo',allSlide[currentSlide],typeof allSlide);
       }
       else{
         allSlide[currentSlide].classList.remove('active');
+        allOverlay[currentSlide].classList.remove('ms-d-none'); //overlay 2
         console.log('allSlide prima',allSlide[currentSlide],typeof allSlide);
         
         currentSlide = 0;
         
         allSlide[currentSlide].classList.add('active');
+        allOverlay[currentSlide].classList.add('ms-d-none'); //overlay 2
         console.log('allSlide dopo',allSlide[currentSlide],typeof allSlide);
       }
     }
@@ -68,20 +76,24 @@ const imagesCarousel = [
     function(){
       if(currentSlide > 0){
         allSlide[currentSlide].classList.remove('active');
+        allOverlay[currentSlide].classList.remove('ms-d-none'); //overlay 2
         console.log('allSlide prima',allSlide[currentSlide],typeof allSlide);
         
         currentSlide --;
         
         allSlide[currentSlide].classList.add('active');
+        allOverlay[currentSlide].classList.add('ms-d-none'); //overlay 2
         console.log('allSlide dopo',allSlide[currentSlide],typeof allSlide);
       }
       else{
         allSlide[currentSlide].classList.remove('active');
+        allOverlay[currentSlide].classList.remove('ms-d-none'); //overlay 2
         console.log('allSlide prima',allSlide[currentSlide],typeof allSlide);
         
         currentSlide = imagesCarousel.length -1;
         
         allSlide[currentSlide].classList.add('active');
+        allOverlay[currentSlide].classList.add('ms-d-none'); //overlay 2
         console.log('allSlide dopo',allSlide[currentSlide],typeof allSlide);
       }
       

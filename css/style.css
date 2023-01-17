@@ -5,7 +5,7 @@ main{
 }
 .carousel{
     background-color: lightsalmon;
-    width: 50%;
+    width: 80%;
     height: 50%;
     position: absolute;
     left: 50%;
@@ -114,14 +114,15 @@ main{
 }
 .after,
 .before{
-    background-color: rgba(240, 248, 255, 0.3);
+    /* background-color: rgba(240, 248, 255, 0.3); */
     position: absolute;
     top: 50%;
     transform: translatey(-50%);
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    text-align: center;
+    /* height: 25px; */
+    /* width: 25px; */
+    /* border-radius: 50%; */
+    /* text-align: center; */
+    color: lightblue;
 }
 .after{
     right: 15px;
@@ -133,9 +134,27 @@ main{
 .after:hover,
 .before:hover{
     cursor: pointer;
-    background-color: rgba(240, 248, 255, 0.9);
+    /* background-color: rgba(240, 248, 255, 0.9); */
+    color: azure;
 }
 
+.ms-d-none{
+    display: none;
+}
+.overlay{
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    /* SOLUZIONE 1 */
+    width: 100%;
+    height: 100%;
+
+    /* SOLUZIONE 2 */
+    /* bottom: 0;
+    right: 0; */
+}
 
 
 
