@@ -1,0 +1,71 @@
+main{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+.carousel{
+    background-color: lightsalmon;
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.slides{
+    width: 100%;
+    height: 100%;
+}
+.slide{
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+.slide img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /*object-fit: scale-down;*/
+}
+
+
+
+
+/* STRUMENTI */
+.strument{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.after,
+.before{
+    background-color: rgba(240, 248, 255, 0.3);
+    position: absolute;
+    top: 50%;
+    transform: translatey(-50%);
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    text-align: center;
+}
+.after{
+    right: 15px;
+}
+.before{
+    left: 15px;
+}
+
+.after:hover,
+.before:hover{
+    cursor: pointer;
+    background-color: rgba(240, 248, 255, 0.9);
+}
+
+.active{
+    display: inline;
+}
+.ms-d-none{
+    display: none;
+}
