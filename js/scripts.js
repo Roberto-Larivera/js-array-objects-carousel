@@ -27,6 +27,8 @@ const imagesCarousel = [
   const after = document.querySelector('.after');
 
   const slides = document.querySelector('.slides');
+  const preview = document.querySelector('.preview'); //bonus 2
+
 
   let currentSlide = 0
 
@@ -115,6 +117,11 @@ const imagesCarousel = [
           <div class="int-image">
             <img src="${item.image}">
           </div>
-        </div>`
+        </div>`;
+        preview.innerHTML += `
+          <div class="box-preview">
+            <div class="overlay"></div>
+            <img src="${item.image}">
+          </div>`
     })
   }

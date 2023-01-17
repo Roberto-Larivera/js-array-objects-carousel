@@ -11,7 +11,24 @@ main{
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
 }
+
+
+.images-slide{
+    width: 100%;
+    height: 80%;
+    position: relative;
+}
+.strument-preview{
+    width: 100%;
+    height: 20%;
+    position: relative;
+}
+
+
 .slides{
     width: 100%;
     height: 100%;
@@ -55,7 +72,28 @@ main{
 }
 
 
-
+/* PREVIEW */
+.preview{
+    /* position: absolute;
+    botto: 0;
+    left: 0; */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+.preview .box-preview{
+    position: relative;
+    width: 20%;
+    height: 100%;
+}
+.box-preview img{
+    
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
 /* FUNZIONE JS */
 .active{
