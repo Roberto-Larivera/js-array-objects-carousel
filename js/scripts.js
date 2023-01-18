@@ -23,73 +23,119 @@ const imagesCarousel = [
   }
 ];
 
-  const before = document.querySelector('.before');
-  const after = document.querySelector('.after');
+const before = document.querySelector('.before');
+const after = document.querySelector('.after');
 
-  const slides = document.querySelector('.slides');
-  const preview = document.querySelector('.preview'); //overlay 2
+const contrPlayStop = document.getElementById('controller-play-stop');
+const contrRightLeft = document.getElementById('controller-right-left');
+
+const slides = document.querySelector('.slides');
+const preview = document.querySelector('.preview'); //overlay 2
 
 
-  let currentSlide = 0
+let currentSlide = 0
 
-  createdSlide ();
+createdSlide ();
 
-  const allSlide = document.querySelectorAll('.slide');
+const allSlide = document.querySelectorAll('.slide');
 const allOverlay = document.querySelectorAll('.overlay') //overlay 2
 
-  allSlide[0].classList.add('active');
+allSlide[0].classList.add('active');
 allOverlay[0].classList.add('ms-d-none'); //overlay 2
 
+let playStopInt;
+let leftRightContr = false;
 
-const autoplay = setInterval(() =>{
-  if( currentSlide < (imagesCarousel.length - 1)){
-    allSlide[currentSlide].classList.remove('active');
-    allOverlay[currentSlide].classList.remove('ms-d-none'); //overlay 2
-    console.log('allSlide prima',allSlide[currentSlide],typeof allSlide);
-    
-    currentSlide ++;
-    
-    allSlide[currentSlide].classList.add('active');
-    allOverlay[currentSlide].classList.add('ms-d-none'); //overlay 2
-    console.log('allSlide dopo',allSlide[currentSlide],typeof allSlide);
+contrPlayStop.addEventListener('click',
+  ()=>{
+    if (contrPlayStop.classList.contains("fa-play")){
+      modContrPlay (contrPlayStop, "fa-play", "fa-stop");
+      autoPlay();
+    }
+    else{
+      modContrPlay (contrPlayStop, "fa-stop", "fa-play");
+      autoStop ();
+    }
   }
-  else{
-    allSlide[currentSlide].classList.remove('active');
-    allOverlay[currentSlide].classList.remove('ms-d-none'); //overlay 2
-    console.log('allSlide prima',allSlide[currentSlide],typeof allSlide);
-    
-    currentSlide = 0;
-    
-    allSlide[currentSlide].classList.add('active');
-    allOverlay[currentSlide].classList.add('ms-d-none'); //overlay 2
-    console.log('allSlide dopo',allSlide[currentSlide],typeof allSlide);
+)
+contrRightLeft.addEventListener('click',
+  ()=>{
+    if (contrRightLeft.classList.contains("fa-rotate-left")){
+      modContrPlay (contrRightLeft, "fa-rotate-left", "fa-rotate-right");
+      leftRightContr = true;
+    }
+    else{
+      modContrPlay (contrRightLeft, "fa-rotate-right", "fa-rotate-left");
+      leftRightContr = false;
+    }
   }
-},3000)
+)
+
+
+
+function autoPlay (){
+  
+  playStopInt = setInterval(() =>{
+    if (leftRightContr == true){
+      console.log('Non devo essere qui')
+      if(currentSlide > 0){
+        removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
+        
+        currentSlide --;
+        
+        addClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
+       
+      }
+      else{
+        removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
+        
+        currentSlide = imagesCarousel.length -1;
+        
+        addClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
+      }
+    }
+    else{
+
+      if( currentSlide < (imagesCarousel.length - 1)){
+        removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
+        
+        currentSlide ++;
+        
+        addClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
+      }
+      else{
+        removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
+        
+        currentSlide = 0;
+        
+        addClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
+      }
+    }
+
+  },3000)
+  
+}
+
+function autoStop () {
+  clearInterval(playStopInt);
+};
 
 after.addEventListener('click',
 
   function(){
     if( currentSlide < (imagesCarousel.length - 1)){
-      allSlide[currentSlide].classList.remove('active');
-      allOverlay[currentSlide].classList.remove('ms-d-none'); //overlay 2
-      console.log('allSlide prima',allSlide[currentSlide],typeof allSlide);
+      removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
       
       currentSlide ++;
       
-      allSlide[currentSlide].classList.add('active');
-      allOverlay[currentSlide].classList.add('ms-d-none'); //overlay 2
-      console.log('allSlide dopo',allSlide[currentSlide],typeof allSlide);
+      addClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
     }
     else{
-      allSlide[currentSlide].classList.remove('active');
-      allOverlay[currentSlide].classList.remove('ms-d-none'); //overlay 2
-      console.log('allSlide prima',allSlide[currentSlide],typeof allSlide);
+      removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
       
       currentSlide = 0;
       
-      allSlide[currentSlide].classList.add('active');
-      allOverlay[currentSlide].classList.add('ms-d-none'); //overlay 2
-      console.log('allSlide dopo',allSlide[currentSlide],typeof allSlide);
+      addClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
     }
   }
 
@@ -99,26 +145,19 @@ before.addEventListener('click',
 
   function(){
     if(currentSlide > 0){
-      allSlide[currentSlide].classList.remove('active');
-      allOverlay[currentSlide].classList.remove('ms-d-none'); //overlay 2
-      console.log('allSlide prima',allSlide[currentSlide],typeof allSlide);
+      removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
       
       currentSlide --;
       
-      allSlide[currentSlide].classList.add('active');
-      allOverlay[currentSlide].classList.add('ms-d-none'); //overlay 2
-      console.log('allSlide dopo',allSlide[currentSlide],typeof allSlide);
+      addClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
+     
     }
     else{
-      allSlide[currentSlide].classList.remove('active');
-      allOverlay[currentSlide].classList.remove('ms-d-none'); //overlay 2
-      console.log('allSlide prima',allSlide[currentSlide],typeof allSlide);
+      removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
       
       currentSlide = imagesCarousel.length -1;
       
-      allSlide[currentSlide].classList.add('active');
-      allOverlay[currentSlide].classList.add('ms-d-none'); //overlay 2
-      console.log('allSlide dopo',allSlide[currentSlide],typeof allSlide);
+      addClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
     }
     
   }
@@ -126,6 +165,18 @@ before.addEventListener('click',
 )
 
 
+function removeClassMy (elemOne, elemTwo, i, clOne, clTwo){
+  elemOne[i].classList.remove(clOne);
+  elemTwo[i].classList.remove(clTwo);
+}
+function addClassMy (elemOne, elemTwo, i, clOne, clTwo){
+  elemOne[i].classList.add(clOne);
+  elemTwo[i].classList.add(clTwo);
+}
+function modContrPlay (elemOne, clRem, clAdd){
+  elemOne.classList.remove(clRem);
+  elemOne.classList.add(clAdd);
+}
 
 
 
@@ -135,29 +186,28 @@ before.addEventListener('click',
 
 
 
+function createdSlide (){
+  // POSSIBILE MODIFICA IN CASO NON SERVONO I COLLEGAMENTI
+  imagesCarousel.forEach((item , i ,arr) =>{
 
-  function createdSlide (){
-    // POSSIBILE MODIFICA IN CASO NON SERVONO I COLLEGAMENTI
-    imagesCarousel.forEach((item , i ,arr) =>{
-
-      slides.innerHTML += `
-        <div class="slide">
-          <div class="info-image">
-            <h2>
-                ${item.title}
-            </h2>
-            <p>
-                ${item.text}
-            </p>
-          </div>
-          <div class="int-image">
-            <img src="${item.image}">
-          </div>
-        </div>`;
-        preview.innerHTML += `
-          <div class="box-preview">
-            <div class="overlay"></div>
-            <img src="${item.image}">
-          </div>`
-    })
-  }
+    slides.innerHTML += `
+      <div class="slide">
+        <div class="info-image">
+          <h2>
+              ${item.title}
+          </h2>
+          <p>
+              ${item.text}
+          </p>
+        </div>
+        <div class="int-image">
+          <img src="${item.image}">
+        </div>
+      </div>`;
+      preview.innerHTML += `
+        <div class="box-preview">
+          <div class="overlay"></div>
+          <img src="${item.image}">
+        </div>`
+  })
+}
