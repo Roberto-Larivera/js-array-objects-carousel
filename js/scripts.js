@@ -37,6 +37,12 @@ let currentSlide = 0
 
 createdSlide ();
 
+// const boxPreviewAll = document.querySelectorAll(".box-preview");
+// console.log('ciao ciao ciao ciao',boxPreviewAll );
+// boxPreviewAll.style.width=(100 / imagesCarousel.length)+'%';
+//preview.style.height((100 / imagesCarousel.lenght) + '%');
+
+
 const allSlide = document.querySelectorAll('.slide');
 const allOverlay = document.querySelectorAll('.overlay') //overlay 2
 
@@ -77,7 +83,6 @@ function autoPlay (){
   
   playStopInt = setInterval(() =>{
     if (leftRightContr == true){
-      console.log('Non devo essere qui')
       if(currentSlide > 0){
         removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
         
@@ -188,7 +193,7 @@ function modContrPlay (elemOne, clRem, clAdd){
 
 function createdSlide (){
   // POSSIBILE MODIFICA IN CASO NON SERVONO I COLLEGAMENTI
-  imagesCarousel.forEach((item , i ,arr) =>{
+  imagesCarousel.forEach((item) =>{
 
     slides.innerHTML += `
       <div class="slide">
@@ -204,10 +209,16 @@ function createdSlide (){
           <img src="${item.image}">
         </div>
       </div>`;
-      preview.innerHTML += `
-        <div class="box-preview">
-          <div class="overlay"></div>
-          <img src="${item.image}">
-        </div>`
+
+    preview.innerHTML += `
+      <div class="box-preview" style="${'width: '+(100 / imagesCarousel.length)+'%'}">
+        <div class="overlay"></div>
+        <img src="${item.image}">
+      </div>`;
+
+    
+    //document.querySelector(".preview .box-preview").style.width=(100 / imagesCarousel.length)+'%';
+    // const boxPreview = document.querySelector(".box-preview");
+    // boxPreview.style.width=(100 / imagesCarousel.length)+'%';
   })
 }

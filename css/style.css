@@ -28,7 +28,7 @@ main{
     position: relative;
 }
 .controller-slide{
-    background-color: crimson;
+    /* background-color: crimson; */
     width: 100%;
     height: 20%;
     position: absolute;
@@ -59,6 +59,7 @@ main{
     padding: 20px;
     color: white;
     text-align: end;
+    text-shadow: 2px 2px 5px black;
 }
 
 .slide .int-image{
@@ -91,8 +92,9 @@ main{
 }
 .preview .box-preview{
     position: relative;
-    width: 20%;
+    /* width: 20%; */
     height: 100%;
+    cursor: pointer;
 }
 .box-preview img{
     
@@ -117,9 +119,14 @@ main{
 }
 .my-buttons i{
     cursor: pointer;
+    color: lightskyblue;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 
 }
-
+.my-buttons i:hover{
+    /* background-color: rgba(240, 248, 255, 0.9); */
+    color: lightblue;
+}
 /* STRUMENTI */
 .strument{
     position: absolute;
@@ -139,7 +146,11 @@ main{
     /* width: 25px; */
     /* border-radius: 50%; */
     /* text-align: center; */
-    color: lightblue;
+    color: lightskyblue;
+    text-shadow: 2px 2px 5px black;
+    cursor: pointer;
+
+
 }
 .after{
     right: 15px;
@@ -150,9 +161,8 @@ main{
 
 .after:hover,
 .before:hover{
-    cursor: pointer;
     /* background-color: rgba(240, 248, 255, 0.9); */
-    color: azure;
+    color: lightblue;
 }
 
 .ms-d-none{
