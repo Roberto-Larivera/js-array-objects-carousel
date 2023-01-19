@@ -30,7 +30,7 @@ const contrPlayStop = document.getElementById('controller-play-stop');
 const contrRightLeft = document.getElementById('controller-right-left');
 
 const slides = document.querySelector('.slides');
-const preview = document.querySelector('.preview'); //overlay 2
+const preview = document.querySelector('.preview');
 
 
 let currentSlide = 0
@@ -44,10 +44,10 @@ createdSlide ();
 
 
 const allSlide = document.querySelectorAll('.slide');
-const allOverlay = document.querySelectorAll('.overlay') //overlay 2
+const allOverlay = document.querySelectorAll('img.filter-id') //overlay 2
 
 allSlide[0].classList.add('active');
-allOverlay[0].classList.add('ms-d-none'); //overlay 2
+allOverlay[0].classList.remove('filter-on'); //overlay 2
 
 let playStopInt;
 let leftRightContr = false;
@@ -84,36 +84,36 @@ function autoPlay (){
   playStopInt = setInterval(() =>{
     if (leftRightContr == true){
       if(currentSlide > 0){
-        removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
+        removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
         
         currentSlide --;
         
-        addClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
+        addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
        
       }
       else{
-        removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
+        removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
         
         currentSlide = imagesCarousel.length -1;
         
-        addClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
+        addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
       }
     }
     else{
 
       if( currentSlide < (imagesCarousel.length - 1)){
-        removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
+        removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
         
         currentSlide ++;
         
-        addClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
+        addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
       }
       else{
-        removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
+        removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
         
         currentSlide = 0;
         
-        addClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
+        addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
       }
     }
 
@@ -129,18 +129,18 @@ after.addEventListener('click',
 
   function(){
     if( currentSlide < (imagesCarousel.length - 1)){
-      removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
+      removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
       
       currentSlide ++;
       
-      addClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
+      addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
     }
     else{
-      removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
+      removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
       
       currentSlide = 0;
       
-      addClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
+      addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
     }
   }
 
@@ -150,19 +150,19 @@ before.addEventListener('click',
 
   function(){
     if(currentSlide > 0){
-      removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
+      removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
       
       currentSlide --;
       
-      addClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
+      addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
      
     }
     else{
-      removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
+      removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
       
       currentSlide = imagesCarousel.length -1;
       
-      addClassMy (allSlide, allOverlay, currentSlide, 'active', 'ms-d-none');
+      addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
     }
     
   }
@@ -172,11 +172,11 @@ before.addEventListener('click',
 
 function removeClassMy (elemOne, elemTwo, i, clOne, clTwo){
   elemOne[i].classList.remove(clOne);
-  elemTwo[i].classList.remove(clTwo);
+  elemTwo[i].classList.add(clTwo);
 }
 function addClassMy (elemOne, elemTwo, i, clOne, clTwo){
   elemOne[i].classList.add(clOne);
-  elemTwo[i].classList.add(clTwo);
+  elemTwo[i].classList.remove(clTwo);
 }
 function modContrPlay (elemOne, clRem, clAdd){
   elemOne.classList.remove(clRem);
@@ -212,8 +212,7 @@ function createdSlide (){
 
     preview.innerHTML += `
       <div class="box-preview" style="${'width: '+(100 / imagesCarousel.length)+'%'}">
-        <div class="overlay"></div>
-        <img src="${item.image}">
+        <img class="filter-id filter-on" src="${item.image}">
       </div>`;
 
     
