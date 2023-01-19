@@ -107,7 +107,7 @@ main{
     object-fit: cover;
 }
 .box-preview img.filter-on{
-    filter: saturate(.3) brightness(0.8) blur(0.6px) sepia(1);
+    filter: saturate(.3) brightness(1) blur(0.6px) sepia(1) hue-rotate(190deg);
 }
 /* FUNZIONE JS */
 .active{
@@ -125,7 +125,7 @@ main{
 }
 .my-buttons i{
     cursor: pointer;
-    color: lightskyblue;
+    color: darkslateblue;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 
 }
@@ -140,7 +140,7 @@ main{
     bottom: 10%;
     transform: translateY(50%);
     font-size: 1.25rem;
-    color: lightskyblue;
+    color: whitesmoke;
     text-shadow: 2px 2px 5px black;
     cursor: pointer;
 }

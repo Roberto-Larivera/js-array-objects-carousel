@@ -45,7 +45,8 @@ createdSlide ();
 
 const allSlide = document.querySelectorAll('.slide');
 const allOverlay = document.querySelectorAll('img.filter-id') //overlay 2
-
+const allBoxPreview = document.querySelectorAll('.box-preview') //overlay 2
+console.log(allBoxPreview)
 allSlide[0].classList.add('active');
 allOverlay[0].classList.remove('filter-on'); //overlay 2
 
@@ -84,36 +85,41 @@ function autoPlay (){
   playStopInt = setInterval(() =>{
     if (leftRightContr == true){
       if(currentSlide > 0){
-        removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
+        changeCurrentSlide (currentSlide - 1);
+        // removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
         
-        currentSlide --;
+        // currentSlide --;
         
-        addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
+        // addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
        
       }
       else{
-        removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
+        changeCurrentSlide (imagesCarousel.length -1)
+        // removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
         
-        currentSlide = imagesCarousel.length -1;
+        // currentSlide = imagesCarousel.length -1;
         
-        addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
+        // addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
       }
     }
     else{
 
       if( currentSlide < (imagesCarousel.length - 1)){
-        removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
+        changeCurrentSlide (currentSlide + 1);
+
+        // removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
         
-        currentSlide ++;
+        // currentSlide ++;
         
-        addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
+        // addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
       }
       else{
-        removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
+        changeCurrentSlide (0)
+        // removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
         
-        currentSlide = 0;
+        // currentSlide = 0;
         
-        addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
+        // addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
       }
     }
 
@@ -125,22 +131,40 @@ function autoStop () {
   clearInterval(playStopInt);
 };
 
+
+
+allBoxPreview.forEach((item, index)=>{
+  item.addEventListener('click',
+    function (){
+      
+      changeCurrentSlide (index);
+      
+
+    }
+  )
+})
+
+
 after.addEventListener('click',
 
   function(){
     if( currentSlide < (imagesCarousel.length - 1)){
-      removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
+      changeCurrentSlide (currentSlide + 1);
+
+      // removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
       
-      currentSlide ++;
+      // currentSlide ++;
       
-      addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
+      // addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
     }
     else{
-      removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
+      changeCurrentSlide (0)
+
+      // removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
       
-      currentSlide = 0;
+      // currentSlide = 0;
       
-      addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
+      // addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
     }
   }
 
@@ -150,25 +174,33 @@ before.addEventListener('click',
 
   function(){
     if(currentSlide > 0){
-      removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
+      changeCurrentSlide (currentSlide - 1);
+      // removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
       
-      currentSlide --;
+      // currentSlide --;
       
-      addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
+      // addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
      
     }
     else{
-      removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
+      changeCurrentSlide (imagesCarousel.length -1)
+      // removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
       
-      currentSlide = imagesCarousel.length -1;
+      // currentSlide = imagesCarousel.length -1;
       
-      addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
+      // addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
     }
     
   }
 
 )
 
+function changeCurrentSlide (clickSlide){
+  
+  removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');   
+  currentSlide = clickSlide;  
+  addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
+}
 
 function removeClassMy (elemOne, elemTwo, i, clOne, clTwo){
   elemOne[i].classList.remove(clOne);
