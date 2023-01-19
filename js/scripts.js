@@ -1,4 +1,3 @@
-//console.log('int ok');
 const imagesCarousel = [
   {
       image: 'img/01.webp',
@@ -32,23 +31,15 @@ const contrRightLeft = document.getElementById('controller-right-left');
 const slides = document.querySelector('.slides');
 const preview = document.querySelector('.preview');
 
-
 let currentSlide = 0
 
 createdSlide ();
 
-// const boxPreviewAll = document.querySelectorAll(".box-preview");
-// console.log('ciao ciao ciao ciao',boxPreviewAll );
-// boxPreviewAll.style.width=(100 / imagesCarousel.length)+'%';
-//preview.style.height((100 / imagesCarousel.lenght) + '%');
-
-
 const allSlide = document.querySelectorAll('.slide');
-const allOverlay = document.querySelectorAll('img.filter-id') //overlay 2
-const allBoxPreview = document.querySelectorAll('.box-preview') //overlay 2
-console.log(allBoxPreview)
+const allFilterId = document.querySelectorAll('img.filter-id')
+const allBoxPreview = document.querySelectorAll('.box-preview')
 allSlide[0].classList.add('active');
-allOverlay[0].classList.remove('filter-on'); //overlay 2
+allFilterId[0].classList.remove('filter-on');
 
 let playStopInt;
 let leftRightContr = false;
@@ -65,6 +56,7 @@ contrPlayStop.addEventListener('click',
     }
   }
 )
+
 contrRightLeft.addEventListener('click',
   ()=>{
     if (contrRightLeft.classList.contains("fa-rotate-left")){
@@ -78,48 +70,60 @@ contrRightLeft.addEventListener('click',
   }
 )
 
+allBoxPreview.forEach((item, index)=>{
+  item.addEventListener('click',
+    function (){
+      
+      changeCurrentSlide (index);
+    }
+  )
+})
 
+after.addEventListener('click',
 
+  function(){
+    if( currentSlide < (imagesCarousel.length - 1)){
+      changeCurrentSlide (currentSlide + 1);
+    }
+    else{
+      changeCurrentSlide (0)
+    }
+  }
+
+)
+
+before.addEventListener('click',
+
+  function(){
+    if(currentSlide > 0){
+      changeCurrentSlide (currentSlide - 1);
+    }
+    else{
+      changeCurrentSlide (imagesCarousel.length -1)
+    }
+    
+  }
+
+)
+// ************   FUNCTION    *********************************
 function autoPlay (){
   
   playStopInt = setInterval(() =>{
     if (leftRightContr == true){
       if(currentSlide > 0){
         changeCurrentSlide (currentSlide - 1);
-        // removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
-        
-        // currentSlide --;
-        
-        // addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
-       
       }
       else{
         changeCurrentSlide (imagesCarousel.length -1)
-        // removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
-        
-        // currentSlide = imagesCarousel.length -1;
-        
-        // addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
       }
     }
     else{
 
       if( currentSlide < (imagesCarousel.length - 1)){
         changeCurrentSlide (currentSlide + 1);
-
-        // removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
-        
-        // currentSlide ++;
-        
-        // addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
       }
       else{
         changeCurrentSlide (0)
-        // removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
-        
-        // currentSlide = 0;
-        
-        // addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
       }
     }
 
@@ -131,75 +135,11 @@ function autoStop () {
   clearInterval(playStopInt);
 };
 
-
-
-allBoxPreview.forEach((item, index)=>{
-  item.addEventListener('click',
-    function (){
-      
-      changeCurrentSlide (index);
-      
-
-    }
-  )
-})
-
-
-after.addEventListener('click',
-
-  function(){
-    if( currentSlide < (imagesCarousel.length - 1)){
-      changeCurrentSlide (currentSlide + 1);
-
-      // removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
-      
-      // currentSlide ++;
-      
-      // addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
-    }
-    else{
-      changeCurrentSlide (0)
-
-      // removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
-      
-      // currentSlide = 0;
-      
-      // addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
-    }
-  }
-
-)
-
-before.addEventListener('click',
-
-  function(){
-    if(currentSlide > 0){
-      changeCurrentSlide (currentSlide - 1);
-      // removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
-      
-      // currentSlide --;
-      
-      // addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
-     
-    }
-    else{
-      changeCurrentSlide (imagesCarousel.length -1)
-      // removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
-      
-      // currentSlide = imagesCarousel.length -1;
-      
-      // addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
-    }
-    
-  }
-
-)
-
 function changeCurrentSlide (clickSlide){
   
-  removeClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');   
+  removeClassMy (allSlide, allFilterId, currentSlide, 'active', 'filter-on');   
   currentSlide = clickSlide;  
-  addClassMy (allSlide, allOverlay, currentSlide, 'active', 'filter-on');
+  addClassMy (allSlide, allFilterId, currentSlide, 'active', 'filter-on');
 }
 
 function removeClassMy (elemOne, elemTwo, i, clOne, clTwo){
@@ -215,16 +155,7 @@ function modContrPlay (elemOne, clRem, clAdd){
   elemOne.classList.add(clAdd);
 }
 
-
-
-
-
-
-
-
-
 function createdSlide (){
-  // POSSIBILE MODIFICA IN CASO NON SERVONO I COLLEGAMENTI
   imagesCarousel.forEach((item) =>{
 
     slides.innerHTML += `
@@ -246,10 +177,5 @@ function createdSlide (){
       <div class="box-preview" style="${'width: '+(100 / imagesCarousel.length)+'%'}">
         <img class="filter-id filter-on" src="${item.image}">
       </div>`;
-
-    
-    //document.querySelector(".preview .box-preview").style.width=(100 / imagesCarousel.length)+'%';
-    // const boxPreview = document.querySelector(".box-preview");
-    // boxPreview.style.width=(100 / imagesCarousel.length)+'%';
   })
 }
